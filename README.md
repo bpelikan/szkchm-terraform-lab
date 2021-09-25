@@ -1,0 +1,1 @@
+# szkchm-terraform-lab
