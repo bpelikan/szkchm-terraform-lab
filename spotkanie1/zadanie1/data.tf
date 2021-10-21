@@ -15,3 +15,8 @@ output "userId" {
   value       = data.azuread_user.user.id
   description = "User ID"
 }
+
+output "userDisplayName" {
+  value       = data.azuread_user.user.display_name
+  description = "Display name"
+}

@@ -5,7 +5,7 @@ resource "azurerm_storage_account" "st44sademo" {
   account_tier             = "Standard"
   account_replication_type = "LRS"
 
-  # tags = {
-  #   environment = "staging"
-  # }
+  tags = {
+    environment = "staging"
+  }
 }

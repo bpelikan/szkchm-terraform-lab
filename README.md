@@ -3,15 +3,20 @@
 
 ```bash
 terraform init
-
 terraform plan
-
 terraform apply
 terraform apply -auto-approve
 
 # formatowanie
 terraform fmt
+
+# state
+terraform state show
+terraform state list
+terraform rm
+terraform state import
 ```
+
 
 ```
 az upgrade
