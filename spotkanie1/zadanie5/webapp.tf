@@ -18,7 +18,18 @@ resource "azurerm_app_service" "app-service" {
   app_service_plan_id = azurerm_app_service_plan.app-service-plan.id
 
   site_config {
-    dotnet_framework_version = "v4.0"
+    dotnet_framework_version = each.value == "mz-notebook-app" ? "v2.0" : "v4.0"
     scm_type                 = "LocalGit"
+  }
+
+  tags = {
+    creation_date = formatdate("DD-MM-YY", timestamp())
+  }
+
+  lifecycle {
+    ignore_changes = [
+      tags,
+      app_settings
+    ]
   }
 }
