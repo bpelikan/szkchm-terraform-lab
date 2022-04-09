@@ -10,7 +10,9 @@ resource "azurerm_app_service_plan" "app-service-plan" {
 }
 
 resource "azurerm_app_service" "app-service" {
-  name                = "app-service-szkchmtf"
+  for_each = var.app_names
+  name     = each.value
+
   location            = data.azurerm_resource_group.main_rg.location
   resource_group_name = data.azurerm_resource_group.main_rg.name
   app_service_plan_id = azurerm_app_service_plan.app-service-plan.id
