@@ -5,3 +5,5 @@ resource "azurerm_storage_account" "st44sademoimport" {
   account_tier             = "Standard"
   account_replication_type = "LRS"
 }
+
+# terraform import azurerm_storage_account.st44sademoimport /subscriptions/748173f1-20c4-4e68-ac58-641f67a83501/resourceGroups/szkchm-tf/providers/Microsoft.Storage/storageAccounts/st44sademoimport

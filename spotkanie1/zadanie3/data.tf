@@ -1,5 +1,5 @@
 data "azurerm_resource_group" "main_rg" {
-  name = "tf-rg"
+  name = "szkchm-tf"
 }
 
 output "resourceGroupLocation" {
