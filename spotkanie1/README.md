@@ -1,5 +1,6 @@
 # Spotkanie 1
 
+
 # [Zadanie 1.1](./zadanie1)
 
 1. Rejestracja providerów `Azure` oraz `Azure Active Directory`
@@ -8,9 +9,11 @@
     * https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/storage_account
     * https://registry.terraform.io/providers/hashicorp/azuread/latest/docs/data-sources/user
 
+
 # [Zadanie 1.2](./zadanie1)
 1. Przegląd stanu `terraform.tfstate`
 2. Porównanie skutków ręcznych zmian w pliku stanu `terraform.tfstate`
+
 
 # [Zadanie 1.3](./zadanie3)
 1. Utworzenie `Storage Account` w Azure oraz utworzenie jego reprezentacji w Terraform
@@ -36,9 +39,13 @@
     echo $TF_VAR_password
     ```
 
+
 # [Zadanie 1.5](./zadanie5)
 1. Utworzenie App Service Plan
 2. Utworzenie 3 aplikacji, których nazwy pobierane będą ze zmiennej - wykorzystanie instrukcji `for_each`.
 
+
+# [Zadanie 1.6](./zadanie6)
+1. Utworzenie providera z backendem do Storage Account
 
 
