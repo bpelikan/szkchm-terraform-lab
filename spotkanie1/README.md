@@ -36,4 +36,9 @@
     echo $TF_VAR_password
     ```
 
+# [Zadanie 1.5](./zadanie5)
+1. Utworzenie App Service Plan
+2. Utworzenie 3 aplikacji, których nazwy pobierane będą ze zmiennej - wykorzystanie instrukcji `for_each`.
+
+
 
