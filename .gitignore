@@ -1,6 +1,9 @@
-
+*.sh
 .terraform
-
-*.tfstate
-
-*.backup
+terraform.tfstate
+terraform.tfstate.backup
+*.key
+*.pfx
+*.csr
+*.pem
+*.cert

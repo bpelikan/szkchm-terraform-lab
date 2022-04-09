@@ -2,21 +2,21 @@ terraform {
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
-      version = "=2.46.0"
+      version = "~> 2.97.0"
     }
 
     azuread = {
       source  = "hashicorp/azuread"
-      version = "~> 2.0.0"
+      version = "~> 2.15.0"
     }
   }
 }
 
 provider "azurerm" {
   features {}
-  subscription_id = "24eafb4c-3855-419f-adbb-cc08869b1754"
+  subscription_id = "748173f1-20c4-4e68-ac58-641f67a83501"
 }
 
 provider "azuread" {
-  tenant_id = "9354c60b-bf0f-4a7f-9e59-7e80b81c626c"
+  tenant_id = "4f0f3c22-2cbb-44c7-a530-ec9f729bd18e"
 }
