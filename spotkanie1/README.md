@@ -48,4 +48,3 @@
 # [Zadanie 1.6](./zadanie6)
 1. Utworzenie providera z backendem do Storage Account
 
-
