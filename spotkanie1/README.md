@@ -47,4 +47,11 @@
 
 # [Zadanie 1.6](./zadanie6)
 1. Utworzenie providera z backendem do Storage Account
+2. Wykorzystanie zmiennej środowiskowej `ARM_ACCESS_KEY` do przechowania klucza do Storage Account
 
+    ```bash
+    RESOURCE_GROUP_NAME='szkchm-tf-state'
+    STORAGE_ACCOUNT_NAME='szkchmtfstatebp'
+    ACCOUNT_KEY=$(az storage account keys list --resource-group $RESOURCE_GROUP_NAME --account-name $STORAGE_ACCOUNT_NAME --query '[0].value' -o tsv)
+    export ARM_ACCESS_KEY=$ACCOUNT_KEY
+    ```
