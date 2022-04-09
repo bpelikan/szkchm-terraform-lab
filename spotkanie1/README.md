@@ -25,4 +25,15 @@
 # [Zadanie 1.4](./zadanie4)
 1. Utworzenie zasobu VM
     * https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/linux_virtual_machine
-2. Utworzenie pliku ze zmiennymi `variables.tf`
+2. Utworzenie pliku z definicjami zmiennych `variables.tf`
+3. Utworzenie pliku z wartościami zmiennych `terraform.tfvars`
+3. Ustawienie zmiennych środowiskowych `TF_VAR_username`/`TF_VAR_password` w celu pobrania ich wartości do zmiennych `username`/`password`:
+
+    ```bash
+    export TF_VAR_username='admuserenv'
+    export TF_VAR_password='envsecurepass!123'
+    echo $TF_VAR_username
+    echo $TF_VAR_password
+    ```
+
+

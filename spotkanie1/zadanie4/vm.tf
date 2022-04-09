@@ -21,7 +21,17 @@ resource "azurerm_network_interface" "nic" {
     name                          = "internal"
     subnet_id                     = azurerm_subnet.subnet.id
     private_ip_address_allocation = "Dynamic"
+    public_ip_address_id          = azurerm_public_ip.pip.id
   }
+}
+
+resource "azurerm_public_ip" "pip" {
+  name                = "example-pip"
+  resource_group_name = data.azurerm_resource_group.main_rg.name
+  location            = data.azurerm_resource_group.main_rg.location
+  allocation_method   = "Dynamic"
+
+  tags = var.tags
 }
 
 resource "azurerm_linux_virtual_machine" "vm" {
@@ -29,15 +39,14 @@ resource "azurerm_linux_virtual_machine" "vm" {
   resource_group_name = data.azurerm_resource_group.main_rg.name
   location            = data.azurerm_resource_group.main_rg.location
   size                = "Standard_B1ls"
-  admin_username      = "adminuser"
+  disable_password_authentication = false
+
+  admin_username = var.username
+  admin_password = var.password
+
   network_interface_ids = [
     azurerm_network_interface.nic.id,
   ]
-
-  admin_ssh_key {
-    username   = "adminuser"
-    public_key = file("~/.ssh/id_rsa.pub")
-  }
 
   os_disk {
     caching              = "ReadWrite"
