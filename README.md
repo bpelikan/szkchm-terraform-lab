@@ -3,12 +3,19 @@
 
 ```bash
 terraform init
+terraform validate
 terraform plan
+
 terraform apply
 terraform apply -auto-approve
 
+terraform destroy 
+terraform destroy -auto-approve
+
+
 # formatowanie
 terraform fmt
+
 
 # state
 terraform state show
@@ -16,6 +23,8 @@ terraform state list
 terraform rm
 terraform state import
 ```
+
+
 
 
 ```

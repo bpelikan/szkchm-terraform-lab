@@ -31,12 +31,21 @@
 2. Utworzenie pliku z definicjami zmiennych `variables.tf`
 3. Utworzenie pliku z wartościami zmiennych `terraform.tfvars`
 3. Ustawienie zmiennych środowiskowych `TF_VAR_username`/`TF_VAR_password` w celu pobrania ich wartości do zmiennych `username`/`password`:
-
+    * [Difference between SET and SETX in PowerShell](https://coderjony.com/blogs/difference-between-set-and-setx-in-powershell/)
+    * [What is the difference between SETX and SET in environment variables in Windows](https://superuser.com/questions/916649/what-is-the-difference-between-setx-and-set-in-environment-variables-in-windows)
+    
     ```bash
     export TF_VAR_username='admuserenv'
     export TF_VAR_password='envsecurepass!123'
     echo $TF_VAR_username
     echo $TF_VAR_password
+
+    # wszystkie zmienne
+    # env
+    # export -p
+
+    # usunięcie zmiennej
+    # unset TF_VAR_username
     ```
 
 
