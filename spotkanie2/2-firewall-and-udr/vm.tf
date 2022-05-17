@@ -21,10 +21,6 @@ resource "azurerm_public_ip" "hub-pip" {
   allocation_method   = "Dynamic"
 }
 
-output "hub-pip-value" {
-  value = azurerm_public_ip.hub-pip.ip_address
-}
-
 resource "azurerm_linux_virtual_machine" "hub-vm01" {
   name                = "hub-vm01"
   resource_group_name = data.azurerm_resource_group.szkchm-tf.name
@@ -51,6 +47,10 @@ resource "azurerm_linux_virtual_machine" "hub-vm01" {
     sku       = "16.04-LTS"
     version   = "latest"
   }
+}
+
+output "hub-pip-value" {
+  value = azurerm_public_ip.hub-pip.ip_address
 }
 
 

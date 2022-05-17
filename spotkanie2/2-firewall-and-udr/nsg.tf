@@ -30,6 +30,7 @@ resource "azurerm_network_security_group" "nsg-subnet01-hub-vnet01" {
     description                = "AllowInternalVnetTraffic"
   }
 
+
   security_rule {
     name                       = "blockall"
     priority                   = 4096
