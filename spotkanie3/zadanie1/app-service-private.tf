@@ -1,8 +1,8 @@
 
 resource "azurerm_app_service_plan" "aps-bp-dev-01" {
   name                = "aps-bp-dev-01"
-  location            = azurerm_resource_group.main_rg.location
-  resource_group_name = azurerm_resource_group.main_rg.name
+  location            = azurerm_resource_group.appservice-dev.location
+  resource_group_name = azurerm_resource_group.appservice-dev.name
 
   sku {
     tier     = "Standard" #PremiumV2
@@ -13,8 +13,8 @@ resource "azurerm_app_service_plan" "aps-bp-dev-01" {
 
 resource "azurerm_app_service" "app-bp-appdev01" {
   name                = var.app-serv-name
-  location            = azurerm_resource_group.main_rg.location
-  resource_group_name = azurerm_resource_group.main_rg.name
+  location            = azurerm_resource_group.appservice-dev.location
+  resource_group_name = azurerm_resource_group.appservice-dev.name
   app_service_plan_id = azurerm_app_service_plan.aps-bp-dev-01.id
 
   app_settings = {
@@ -26,8 +26,8 @@ resource "azurerm_app_service" "app-bp-appdev01" {
 
 resource "azurerm_app_service" "app-bp-appdev02" {
   name                = "${var.app-serv-name}-${local.studentPrefix}"
-  location            = azurerm_resource_group.main_rg.location
-  resource_group_name = azurerm_resource_group.main_rg.name
+  location            = azurerm_resource_group.appservice-dev.location
+  resource_group_name = azurerm_resource_group.appservice-dev.name
   app_service_plan_id = azurerm_app_service_plan.aps-bp-dev-01.id
 
   app_settings = {
