@@ -4,6 +4,7 @@ locals {
   tags = {
     "env"  = "dev"
     "task" = "zjazd3"
+    "user" = "bpelikan"
   }
 }
 

@@ -5,8 +5,8 @@ resource "azurerm_app_service_plan" "aps-bp-dev-01" {
   resource_group_name = azurerm_resource_group.main_rg.name
 
   sku {
-    tier     = "Standard"
-    size     = "S1"
+    tier     = "Standard" #PremiumV2
+    size     = "S1" #P1v2
     capacity = 1
   }
 }
@@ -24,7 +24,7 @@ resource "azurerm_app_service" "app-bp-appdev01" {
   }
 }
 
-resource "azurerm_app_service" "app-mf-appdev02" {
+resource "azurerm_app_service" "app-bp-appdev02" {
   name                = "${var.app-serv-name}-${local.studentPrefix}"
   location            = azurerm_resource_group.main_rg.location
   resource_group_name = azurerm_resource_group.main_rg.name
@@ -48,20 +48,20 @@ resource "azurerm_private_dns_zone_virtual_network_link" "vnet-hub-privatelink-a
   virtual_network_id    = azurerm_virtual_network.vnet-hub.id
 }
 
-/*
-resource "azurerm_private_endpoint" "aps-mf-dev-01-pe" {
-  name                = "aps-mf-dev-01-pe"
+
+resource "azurerm_private_endpoint" "aps-bp-dev-01-pe" {
+  name                = "aps-bp-dev-01-pe"
   location            = azurerm_resource_group.main_rg.location
   resource_group_name = azurerm_resource_group.main_rg.name
   subnet_id           = azurerm_subnet.vnet-hub-private-app-service-subnet.id
 
   private_service_connection {
-    name                           = "aps-mf-dev-01-pe-connection"
-    private_connection_resource_id = azurerm_app_service.app-mf-appdev01.id
+    name                           = "aps-bp-dev-01-pe-connection"
+    private_connection_resource_id = azurerm_app_service.app-bp-appdev01.id
     subresource_names              = ["sites"]
     is_manual_connection           = false
   }
-}*
+}
 
 
 /*resource "azurerm_private_dns_a_record" "app-fqdn1" {
