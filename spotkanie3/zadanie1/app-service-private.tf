@@ -36,17 +36,6 @@ resource "azurerm_app_service" "app-bp-appdev02" {
     "ENVNAME" : "app-bp-appdev01"
   }
 }
-resource "azurerm_private_dns_zone" "privatelink-azurewebsites-net" {
-  name                = "privatelink.azurewebsites.net"
-  resource_group_name = azurerm_resource_group.main_rg.name
-}
-
-resource "azurerm_private_dns_zone_virtual_network_link" "vnet-hub-privatelink-azurewebsites-net-dnszone-virtuallink" {
-  name                  = "vnet-hub-privatelink-azurewebsites-net-dnszone-virtuallink"
-  resource_group_name   = azurerm_resource_group.main_rg.name
-  private_dns_zone_name = azurerm_private_dns_zone.privatelink-azurewebsites-net.name
-  virtual_network_id    = azurerm_virtual_network.vnet-hub.id
-}
 
 
 resource "azurerm_private_endpoint" "aps-bp-dev-01-pe" {
