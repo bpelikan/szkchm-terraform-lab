@@ -1,6 +1,6 @@
 
-resource "azurerm_app_service_plan" "aps-mf-dev-01" {
-  name                = "aps-mf-dev-01"
+resource "azurerm_app_service_plan" "aps-bp-dev-01" {
+  name                = "aps-bp-dev-01"
   location            = azurerm_resource_group.main_rg.location
   resource_group_name = azurerm_resource_group.main_rg.name
 
@@ -11,16 +11,16 @@ resource "azurerm_app_service_plan" "aps-mf-dev-01" {
   }
 }
 
-resource "azurerm_app_service" "app-mf-appdev01" {
+resource "azurerm_app_service" "app-bp-appdev01" {
   name                = var.app-serv-name
   location            = azurerm_resource_group.main_rg.location
   resource_group_name = azurerm_resource_group.main_rg.name
-  app_service_plan_id = azurerm_app_service_plan.aps-mf-dev-01.id
+  app_service_plan_id = azurerm_app_service_plan.aps-bp-dev-01.id
 
   app_settings = {
     "WEBSITE_DNS_SERVER" : "168.63.129.16",
     "WEBSITE_VNET_ROUTE_ALL" : "1"
-    "ENVNAME" : "app-mf-appdev01"
+    "ENVNAME" : "app-bp-appdev01"
   }
 }
 
@@ -28,12 +28,12 @@ resource "azurerm_app_service" "app-mf-appdev02" {
   name                = "${var.app-serv-name}-${local.studentPrefix}"
   location            = azurerm_resource_group.main_rg.location
   resource_group_name = azurerm_resource_group.main_rg.name
-  app_service_plan_id = azurerm_app_service_plan.aps-mf-dev-01.id
+  app_service_plan_id = azurerm_app_service_plan.aps-bp-dev-01.id
 
   app_settings = {
     "WEBSITE_DNS_SERVER" : "168.63.129.16",
     "WEBSITE_VNET_ROUTE_ALL" : "1"
-    "ENVNAME" : "app-mf-appdev01"
+    "ENVNAME" : "app-bp-appdev01"
   }
 }
 resource "azurerm_private_dns_zone" "privatelink-azurewebsites-net" {

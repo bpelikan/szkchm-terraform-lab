@@ -1,29 +1,29 @@
 variable "sub-id" {
-  type = string
-  default = "ffca029c-a6e3-4630-9dfc-ff43256cd2f8"
+  type    = string
+  default = "748173f1-20c4-4e68-ac58-641f67a83501"
 }
 
 variable "rg-name" {
-  type = string
-  default = "tf-st60-rg"
+  type    = string
+  default = "szkchm-tf"
 }
 
 variable "app-serv-name" {
-    type = string
-    default = "aps-mf-dev-01"
+  type    = string
+  default = "aps-bp-dev-01"
 }
 
 variable "key-vault-name" {
-    type = string
-    default = "kv-mf-dev-01"
+  type    = string
+  default = "kv-bp-dev-01"
 }
 
 variable "function-storage-name" {
-    type = string
-    default = "samffundev01"
+  type    = string
+  default = "sabpfundev01"
 }
 
 variable "aks-cluster-name" {
-  type = string
-  default = "aks-mf-dev-01"
+  type    = string
+  default = "aks-bp-dev-01"
 }

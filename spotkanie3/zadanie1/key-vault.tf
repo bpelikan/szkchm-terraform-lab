@@ -1,4 +1,4 @@
-resource "azurerm_key_vault" "kv-mf-dev-01" {
+resource "azurerm_key_vault" "kv-bp-dev-01" {
   name                = var.key-vault-name
   location            = azurerm_resource_group.main_rg.location
   resource_group_name = azurerm_resource_group.main_rg.name
@@ -27,5 +27,5 @@ resource "azurerm_key_vault" "kv-mf-dev-01" {
 resource "azurerm_key_vault_secret" "keyvault-secret-01" {
   name         = "keyvault-secret-01"
   value        = "terraform-is-cool"
-  key_vault_id = azurerm_key_vault.kv-mf-dev-01.id
+  key_vault_id = azurerm_key_vault.kv-bp-dev-01.id
 }

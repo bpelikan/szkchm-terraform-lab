@@ -24,11 +24,11 @@ resource "azurerm_linux_virtual_machine" "VM-WFE01-DEV" {
   computer_name       = "VM-WFE01-DEV"
   location            = azurerm_resource_group.main_rg.location
   resource_group_name = azurerm_resource_group.main_rg.name
-  size                = "Standard_B2s"
+  size                = "Standard_B1ls"
 
   disable_password_authentication = false
-  admin_username                  = "mifurm"
-  admin_password                  = "pobierzSobieHasloZKeyVault"
+  admin_username                  = "bplogme"
+  admin_password                  = "pobierzSobieHasloZKeyVault!23"
 
   network_interface_ids = [
     azurerm_network_interface.VM-WFE01-DEV-NIC.id,
