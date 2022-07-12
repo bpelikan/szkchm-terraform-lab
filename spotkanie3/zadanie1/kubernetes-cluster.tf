@@ -1,7 +1,7 @@
 resource "azurerm_kubernetes_cluster" "aks-bp-clusterdev01" {
   name                = "aks-bp-clusterdev01"
-  location            = azurerm_resource_group.main_rg.location
-  resource_group_name = azurerm_resource_group.main_rg.name
+  location            = azurerm_resource_group.k8s-dev.location
+  resource_group_name = azurerm_resource_group.k8s-dev.name
   dns_prefix          = "aks-bp-clusterdev01"
 
   default_node_pool {

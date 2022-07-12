@@ -38,6 +38,13 @@ resource "azurerm_resource_group" "vm-dev" {
   location = local.location
   tags     = local.tags
 }
+
+resource "azurerm_resource_group" "k8s-dev" {
+  name     = format("rg-%s-%s", local.studentPrefix, "k8s-dev")
+  location = local.location
+  tags     = local.tags
+}
+
 resource "azurerm_resource_group" "kv-dev" {
   name     = format("rg-%s-%s", local.studentPrefix, "kv-dev")
   location = local.location
