@@ -51,8 +51,8 @@ resource "azurerm_private_dns_zone_virtual_network_link" "vnet-hub-privatelink-a
 
 resource "azurerm_private_endpoint" "aps-bp-dev-01-pe" {
   name                = "aps-bp-dev-01-pe"
-  location            = azurerm_resource_group.main_rg.location
-  resource_group_name = azurerm_resource_group.main_rg.name
+  location            = azurerm_resource_group.netops-prd-spoke.location
+  resource_group_name = azurerm_resource_group.netops-prd-spoke.name
   subnet_id           = azurerm_subnet.vnet-hub-private-app-service-subnet.id
 
   private_service_connection {
