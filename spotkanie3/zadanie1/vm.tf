@@ -1,15 +1,15 @@
 resource "azurerm_public_ip" "VM-WFE01-DEV-PIP" {
   name                    = "VM-WFE01-DEV-PIP"
-  location                = azurerm_resource_group.main_rg.location
-  resource_group_name     = azurerm_resource_group.main_rg.name
+  location                = azurerm_resource_group.vm-dev.location
+  resource_group_name     = azurerm_resource_group.vm-dev.name
   allocation_method       = "Dynamic"
   idle_timeout_in_minutes = 30
 }
 
 resource "azurerm_network_interface" "VM-WFE01-DEV-NIC" {
   name                = "VM-WFE01-DEV-NIC"
-  location            = azurerm_resource_group.main_rg.location
-  resource_group_name = azurerm_resource_group.main_rg.name
+  location            = azurerm_resource_group.vm-dev.location
+  resource_group_name = azurerm_resource_group.vm-dev.name
 
   ip_configuration {
     name                          = "VM-WFE01-DEV-NIC-CONFIG"
@@ -22,8 +22,8 @@ resource "azurerm_network_interface" "VM-WFE01-DEV-NIC" {
 resource "azurerm_linux_virtual_machine" "VM-WFE01-DEV" {
   name                = "VM-WFE01-DEV"
   computer_name       = "VM-WFE01-DEV"
-  location            = azurerm_resource_group.main_rg.location
-  resource_group_name = azurerm_resource_group.main_rg.name
+  location            = azurerm_resource_group.vm-dev.location
+  resource_group_name = azurerm_resource_group.vm-dev.name
   size                = "Standard_B1ls"
 
   disable_password_authentication = false
@@ -54,8 +54,8 @@ resource "azurerm_linux_virtual_machine" "VM-WFE01-DEV" {
 
 resource "azurerm_managed_disk" "VM-WFE01-DEV-DATA-DISK" {
   name                 = "VM-WFE01-DEV-DATA-DISK"
-  location             = azurerm_resource_group.main_rg.location
-  resource_group_name  = azurerm_resource_group.main_rg.name
+  location             = azurerm_resource_group.vm-dev.location
+  resource_group_name  = azurerm_resource_group.vm-dev.name
   storage_account_type = "Standard_LRS"
   create_option        = "Empty"
   #sprawdz inne opcje niz Empty dla Create

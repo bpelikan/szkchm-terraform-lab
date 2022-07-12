@@ -32,3 +32,9 @@ resource "azurerm_resource_group" "netops-dev-spoke" {
   location = local.location
   tags     = local.tags
 }
+
+resource "azurerm_resource_group" "vm-dev" {
+  name     = format("rg-%s-%s", local.studentPrefix, "vm-dev")
+  location = local.location
+  tags     = local.tags
+}
