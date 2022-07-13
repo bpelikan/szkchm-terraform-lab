@@ -38,6 +38,8 @@ resource "azurerm_app_service" "app-bp-appdev02" {
 }
 
 
+
+
 resource "azurerm_private_endpoint" "aps-bp-dev-01-pe" {
   name                = "aps-bp-dev-01-pe"
   location            = azurerm_resource_group.netops-prd-spoke.location
@@ -52,15 +54,17 @@ resource "azurerm_private_endpoint" "aps-bp-dev-01-pe" {
   }
 }
 
-
-/*resource "azurerm_private_dns_a_record" "app-fqdn1" {
-  name                = substr(azurerm_private_endpoint.privateappendpoint.custom_dns_configs[0].fqdn, 0, 23)
-  zone_name           = azurerm_private_dns_zone.appprivzone.name
-  resource_group_name = azurerm_resource_group.main_rg.name
+resource "azurerm_private_dns_a_record" "aps-bp-dev-01-pe-dns-a-record" {
+  name                = azurerm_app_service.app-bp-appdev01.name
+  # name                = substr(azurerm_private_endpoint.aps-bp-dev-01-pe.custom_dns_configs[0].fqdn, 0, 23)
+  zone_name           = azurerm_private_dns_zone.privatelink-azurewebsites-net.name
+  resource_group_name = azurerm_resource_group.netops-prd-dns.name
   ttl                 = 300
-  records             = azurerm_private_endpoint.privateappendpoint.custom_dns_configs[0].ip_addresses
+  records             = azurerm_private_endpoint.aps-bp-dev-01-pe.custom_dns_configs[0].ip_addresses
 }
-*/
+
+
+
 
 resource "azurerm_private_endpoint" "aps-bp-dev-02-pe" {
   name                = "aps-bp-dev-02-pe"
@@ -75,4 +79,11 @@ resource "azurerm_private_endpoint" "aps-bp-dev-02-pe" {
     is_manual_connection           = false
   }
 }
-
+
+resource "azurerm_private_dns_a_record" "aps-bp-dev-02-pe-dns-a-record" {
+  name = azurerm_app_service.app-bp-appdev02.name
+  zone_name           = azurerm_private_dns_zone.privatelink-azurewebsites-net.name
+  resource_group_name = azurerm_resource_group.netops-prd-dns.name
+  ttl                 = 300
+  records             = azurerm_private_endpoint.aps-bp-dev-02-pe.custom_dns_configs[0].ip_addresses
+}
