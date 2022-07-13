@@ -29,3 +29,27 @@ resource "azurerm_key_vault_secret" "keyvault-secret-01" {
   value        = "terraform-is-cool"
   key_vault_id = azurerm_key_vault.kv-bp-dev-01.id
 }
+
+
+#Wazny link: https://docs.microsoft.com/en-us/azure/private-link/private-endpoint-overview
+resource "azurerm_private_endpoint" "kv-bp-dev-01-pe" {
+  name                = "kv-bp-dev-01-pe"
+  location            = azurerm_resource_group.netops-prd-spoke.location
+  resource_group_name = azurerm_resource_group.netops-prd-spoke.name
+  subnet_id           = azurerm_subnet.vnet-spoke-prd-private-app-service-subnet.id
+
+  private_service_connection {
+    name                           = "kv-bp-dev-01-pe-connection"
+    private_connection_resource_id = azurerm_key_vault.kv-bp-dev-01.id
+    subresource_names              = ["vault"]
+    is_manual_connection           = false
+  }
+}
+
+resource "azurerm_private_dns_a_record" "app-fqdn1" {
+  name                = azurerm_key_vault.kv-bp-dev-01.name
+  zone_name           = azurerm_private_dns_zone.privatelink-keyvault-net.name
+  resource_group_name = azurerm_resource_group.netops-prd-dns.name
+  ttl                 = 300
+  records             = azurerm_private_endpoint.kv-bp-dev-01-pe.custom_dns_configs[0].ip_addresses
+}
