@@ -5,7 +5,6 @@ resource "azurerm_virtual_network" "vnet-hub" {
   address_space       = ["10.0.0.0/16"]
 }
 
-
 resource "azurerm_virtual_network" "vnet-spoke-prd" {
   name                = "vnet-spoke-prd"
   location            = azurerm_resource_group.netops-prd-spoke.location
@@ -59,6 +58,14 @@ resource "azurerm_subnet" "vnet-spoke-prd-private-vm-subnet" {
   address_prefixes                               = ["10.100.3.0/24"]
 }
 
+resource "azurerm_subnet" "vnet-spoke-prd-private-aks-subnet" {
+  name                                           = "aks-subnet"
+  virtual_network_name                           = azurerm_virtual_network.vnet-spoke-prd.name
+  resource_group_name                            = azurerm_resource_group.netops-prd-spoke.name
+  enforce_private_link_endpoint_network_policies = true
+  enforce_private_link_service_network_policies  = false
+  address_prefixes                               = ["10.100.4.0/24"]
+}
 
 
 
