@@ -13,7 +13,7 @@ resource "azurerm_network_interface" "VM-WFE01-DEV-NIC" {
 
   ip_configuration {
     name                          = "VM-WFE01-DEV-NIC-CONFIG"
-    subnet_id                     = azurerm_subnet.vnet-hub-private-vm-subnet.id
+    subnet_id                     = azurerm_subnet.vnet-spoke-prd-private-vm-subnet.id
     private_ip_address_allocation = "Dynamic"
     public_ip_address_id          = azurerm_public_ip.VM-WFE01-DEV-PIP.id
   }

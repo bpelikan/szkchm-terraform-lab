@@ -1,8 +1,11 @@
+# DNS - App service
 resource "azurerm_private_dns_zone" "privatelink-azurewebsites-net" {
   name                = "privatelink.azurewebsites.net"
   resource_group_name = azurerm_resource_group.netops-prd-dns.name
 }
 
+
+# DNS links -> VNET-HUB
 resource "azurerm_private_dns_zone_virtual_network_link" "vnet-hub-privatelink-azurewebsites-net-dnszone-virtuallink" {
   name                  = "vnet-hub-privatelink-azurewebsites-net-dnszone-virtuallink"
   resource_group_name   = azurerm_resource_group.netops-prd-dns.name

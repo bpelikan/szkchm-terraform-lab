@@ -23,7 +23,7 @@ resource "azurerm_virtual_network" "vnet-spoke-dev" {
 
 
 
-resource "azurerm_subnet" "vnet-hub-private-app-service-subnet" {
+resource "azurerm_subnet" "vnet-spoke-prd-private-app-service-subnet" {
   name                                           = "app-service-subnet"
   virtual_network_name                           = azurerm_virtual_network.vnet-spoke-prd.name
   resource_group_name                            = azurerm_resource_group.netops-prd-spoke.name
@@ -32,7 +32,7 @@ resource "azurerm_subnet" "vnet-hub-private-app-service-subnet" {
   address_prefixes                               = ["10.100.0.0/24"]
 }
 
-resource "azurerm_subnet" "vnet-hub-private-cosmodb-subnet" {
+resource "azurerm_subnet" "vnet-spoke-prd-private-cosmodb-subnet" {
   name                                           = "cosmosdb-subnet"
   virtual_network_name                           = azurerm_virtual_network.vnet-spoke-prd.name
   resource_group_name                            = azurerm_resource_group.netops-prd-spoke.name
@@ -41,7 +41,7 @@ resource "azurerm_subnet" "vnet-hub-private-cosmodb-subnet" {
   address_prefixes                               = ["10.100.1.0/24"]
 }
 
-resource "azurerm_subnet" "vnet-hub-private-function-subnet" {
+resource "azurerm_subnet" "vnet-spoke-prd-private-function-subnet" {
   name                                           = "function-subnet"
   virtual_network_name                           = azurerm_virtual_network.vnet-spoke-prd.name
   resource_group_name                            = azurerm_resource_group.netops-prd-spoke.name
@@ -50,7 +50,7 @@ resource "azurerm_subnet" "vnet-hub-private-function-subnet" {
   address_prefixes                               = ["10.100.2.0/24"]
 }
 
-resource "azurerm_subnet" "vnet-hub-private-vm-subnet" {
+resource "azurerm_subnet" "vnet-spoke-prd-private-vm-subnet" {
   name                                           = "vm-subnet"
   virtual_network_name                           = azurerm_virtual_network.vnet-spoke-prd.name
   resource_group_name                            = azurerm_resource_group.netops-prd-spoke.name

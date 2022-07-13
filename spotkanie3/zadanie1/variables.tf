@@ -10,7 +10,7 @@ variable "rg-name" {
 
 variable "app-serv-name" {
   type    = string
-  default = "aps-bp-dev-01"
+  default = "aps-bp-dev"
 }
 
 variable "key-vault-name" {
