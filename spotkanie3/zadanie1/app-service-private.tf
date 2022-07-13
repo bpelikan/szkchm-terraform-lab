@@ -6,7 +6,7 @@ resource "azurerm_app_service_plan" "aps-bp-dev-01" {
 
   sku {
     tier     = "Standard" #PremiumV2
-    size     = "S1" #P1v2
+    size     = "S1"       #P1v2
     capacity = 1
   }
 }
@@ -55,7 +55,7 @@ resource "azurerm_private_endpoint" "aps-bp-dev-01-pe" {
 }
 
 resource "azurerm_private_dns_a_record" "aps-bp-dev-01-pe-dns-a-record" {
-  name                = azurerm_app_service.app-bp-appdev01.name
+  name = azurerm_app_service.app-bp-appdev01.name
   # name                = substr(azurerm_private_endpoint.aps-bp-dev-01-pe.custom_dns_configs[0].fqdn, 0, 23)
   zone_name           = azurerm_private_dns_zone.privatelink-azurewebsites-net.name
   resource_group_name = azurerm_resource_group.netops-prd-dns.name
@@ -81,7 +81,7 @@ resource "azurerm_private_endpoint" "aps-bp-dev-02-pe" {
 }
 
 resource "azurerm_private_dns_a_record" "aps-bp-dev-02-pe-dns-a-record" {
-  name = azurerm_app_service.app-bp-appdev02.name
+  name                = azurerm_app_service.app-bp-appdev02.name
   zone_name           = azurerm_private_dns_zone.privatelink-azurewebsites-net.name
   resource_group_name = azurerm_resource_group.netops-prd-dns.name
   ttl                 = 300

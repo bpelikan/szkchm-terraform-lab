@@ -1,3 +1,12 @@
+resource "azurerm_availability_set" "avset-wfe-dev-01" {
+  name                         = "avset-wfe-dev-01"
+  location                     = azurerm_resource_group.vm-dev.location
+  resource_group_name          = azurerm_resource_group.vm-dev.name
+  platform_update_domain_count = 5
+  platform_fault_domain_count  = 3
+}
+
+
 resource "azurerm_public_ip" "VM-WFE01-DEV-PIP" {
   name                    = "VM-WFE01-DEV-PIP"
   location                = azurerm_resource_group.vm-dev.location
@@ -25,6 +34,8 @@ resource "azurerm_linux_virtual_machine" "VM-WFE01-DEV" {
   location            = azurerm_resource_group.vm-dev.location
   resource_group_name = azurerm_resource_group.vm-dev.name
   size                = "Standard_B1ls"
+
+  availability_set_id = azurerm_availability_set.avset-wfe-dev-01.id
 
   disable_password_authentication = false
   admin_username                  = "bplogme"
