@@ -6,7 +6,6 @@ resource "azurerm_availability_set" "avset-wfe-dev-01" {
   platform_fault_domain_count  = 3
 }
 
-
 resource "azurerm_public_ip" "VM-WFE01-DEV-PIP" {
   name                    = "VM-WFE01-DEV-PIP"
   location                = azurerm_resource_group.vm-dev.location
@@ -15,16 +14,28 @@ resource "azurerm_public_ip" "VM-WFE01-DEV-PIP" {
   idle_timeout_in_minutes = 30
 }
 
-resource "azurerm_network_interface" "VM-WFE01-DEV-NIC" {
-  name                = "VM-WFE01-DEV-NIC"
+resource "azurerm_network_interface" "VM-WFE01-DEV-NIC01" {
+  name                = "VM-WFE01-DEV-NIC01"
   location            = azurerm_resource_group.vm-dev.location
   resource_group_name = azurerm_resource_group.vm-dev.name
 
   ip_configuration {
-    name                          = "VM-WFE01-DEV-NIC-CONFIG"
+    name                          = "VM-WFE01-DEV-NIC01-CONFIG"
     subnet_id                     = azurerm_subnet.vnet-spoke-prd-private-vm-subnet.id
     private_ip_address_allocation = "Dynamic"
     public_ip_address_id          = azurerm_public_ip.VM-WFE01-DEV-PIP.id
+  }
+}
+
+resource "azurerm_network_interface" "VM-WFE01-DEV-NIC02" {
+  name                = "VM-WFE01-DEV-NIC02"
+  location            = azurerm_resource_group.vm-dev.location
+  resource_group_name = azurerm_resource_group.vm-dev.name
+
+  ip_configuration {
+    name                          = "VM-WFE01-DEV-NIC02-CONFIG"
+    subnet_id                     = azurerm_subnet.vnet-spoke-prd-private-vm-subnet.id
+    private_ip_address_allocation = "Dynamic"
   }
 }
 
@@ -42,7 +53,8 @@ resource "azurerm_linux_virtual_machine" "VM-WFE01-DEV" {
   admin_password                  = "pobierzSobieHasloZKeyVault!23"
 
   network_interface_ids = [
-    azurerm_network_interface.VM-WFE01-DEV-NIC.id,
+    azurerm_network_interface.VM-WFE01-DEV-NIC01.id,
+    azurerm_network_interface.VM-WFE01-DEV-NIC02.id,
   ]
 
   os_disk {
