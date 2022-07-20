@@ -3,10 +3,7 @@
 #
 resource "azurerm_role_definition" "chm-dev-networkjoin" {
   name        = "chm-dev-networkjoin"
-  #TODO
-  provider    = azurerm.provider-dev-dev
-  #TODO
-  scope       = "/providers/Microsoft.Management/managementGroups/${data.azurerm_subscriptions.SUB-GLOBAL.subscriptions[0].tenant_id}"
+  scope       = "/subscriptions/${var.sub-id}"
   description = "chm-dev-networkjoin"
 
   permissions {
@@ -20,7 +17,7 @@ resource "azurerm_role_definition" "chm-dev-networkjoin" {
       "Microsoft.Network/virtualNetworks/subnets/join/action",
       "Microsoft.Network/virtualNetworks/subnets/write",
       "Microsoft.Network/networkSecurityGroups/read",
-      "Microsoft.Network/routeTchmles/read"
+      "Microsoft.Network/routeTables/read"
     ]
     not_actions = []
   }
@@ -32,10 +29,8 @@ resource "azurerm_role_definition" "chm-dev-networkjoin" {
 #
 resource "azurerm_role_definition" "chm-dev-nsgcontributor" {
   name        = "chm-dev-nsgcontributor"
-  provider    = azurerm.provider-dev-dev
-  #TODO
-  scope       = "/subscriptions/${var.subscription-dev-id}"
-  description = "chm-dev-nsgcontributor"
+  scope       = "/subscriptions/${var.sub-id}"
+  description = "chm-dev-nsgcontributor # Rola pozwala na modyfikację NSG w ramach konrektnego NSG, utworzonego na potrzeby danego projektu # Rola nadawana na potrzeby danego projektu"
 
   permissions {
     actions   = [
@@ -49,12 +44,11 @@ resource "azurerm_role_definition" "chm-dev-nsgcontributor" {
 
 }
 
-#Pozwala tworzyć grupy zasobów
+# Pozwala tworzyć grupy zasobów
 resource "azurerm_role_definition" "chm-dev-rgcreator" {
   name        = "chm-dev-rgcreator"
-  #TODO
-  scope       = "/subscriptions/${var.subscription-dev-id}"
-  description = "chm-dev-rgcreator"
+  scope       = "/subscriptions/${var.sub-id}"
+  description = "chm-dev-rgcreator # Pozwala tworzyć grupy zasobów"
   permissions {
     actions     = [
       "Microsoft.Resources/subscriptions/resourceGroups/*",
