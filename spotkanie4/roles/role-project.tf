@@ -1,9 +1,6 @@
-#
-# TODO; zmiana resource providera
-#
 resource "azurerm_role_definition" "chm-dev-networkjoin" {
   name        = "chm-dev-networkjoin"
-  scope       = "/subscriptions/${var.sub-id}"
+  scope       = data.azurerm_subscription.current.id
   description = "chm-dev-networkjoin"
 
   permissions {
@@ -21,6 +18,10 @@ resource "azurerm_role_definition" "chm-dev-networkjoin" {
     ]
     not_actions = []
   }
+
+  assignable_scopes = [
+    data.azurerm_subscription.current.id
+  ]
 }
 
 #
@@ -29,7 +30,7 @@ resource "azurerm_role_definition" "chm-dev-networkjoin" {
 #
 resource "azurerm_role_definition" "chm-dev-nsgcontributor" {
   name        = "chm-dev-nsgcontributor"
-  scope       = "/subscriptions/${var.sub-id}"
+  scope       = data.azurerm_subscription.current.id
   description = "chm-dev-nsgcontributor # Rola pozwala na modyfikację NSG w ramach konrektnego NSG, utworzonego na potrzeby danego projektu # Rola nadawana na potrzeby danego projektu"
 
   permissions {
@@ -42,12 +43,15 @@ resource "azurerm_role_definition" "chm-dev-nsgcontributor" {
     not_actions = []
   }
 
+  assignable_scopes = [
+    data.azurerm_subscription.current.id
+  ]
 }
 
 # Pozwala tworzyć grupy zasobów
 resource "azurerm_role_definition" "chm-dev-rgcreator" {
   name        = "chm-dev-rgcreator"
-  scope       = "/subscriptions/${var.sub-id}"
+  scope       = data.azurerm_subscription.current.id
   description = "chm-dev-rgcreator # Pozwala tworzyć grupy zasobów"
   permissions {
     actions = [
@@ -58,4 +62,8 @@ resource "azurerm_role_definition" "chm-dev-rgcreator" {
     not_actions = [
     ]
   }
+  
+  assignable_scopes = [
+    data.azurerm_subscription.current.id
+  ]
 }
