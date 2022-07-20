@@ -7,7 +7,7 @@ resource "azurerm_role_definition" "chm-dev-networkjoin" {
   description = "chm-dev-networkjoin"
 
   permissions {
-    actions   = [
+    actions = [
       "Microsoft.Resources/subscriptions/resourceGroups/read",
       "Microsoft.Portal/dashboards/read",
       "Microsoft.ResourceHealth/*/read",
@@ -33,12 +33,12 @@ resource "azurerm_role_definition" "chm-dev-nsgcontributor" {
   description = "chm-dev-nsgcontributor # Rola pozwala na modyfikację NSG w ramach konrektnego NSG, utworzonego na potrzeby danego projektu # Rola nadawana na potrzeby danego projektu"
 
   permissions {
-    actions   = [
+    actions = [
       "Microsoft.Resources/subscriptions/resourceGroups/read",
       "Microsoft.Portal/dashboards/read",
       "Microsoft.ResourceHealth/*/read",
       "Microsoft.Network/networkSecurityGroups/*"
-      ]
+    ]
     not_actions = []
   }
 
@@ -50,7 +50,7 @@ resource "azurerm_role_definition" "chm-dev-rgcreator" {
   scope       = "/subscriptions/${var.sub-id}"
   description = "chm-dev-rgcreator # Pozwala tworzyć grupy zasobów"
   permissions {
-    actions     = [
+    actions = [
       "Microsoft.Resources/subscriptions/resourceGroups/*",
       "Microsoft.Authorization/roleAssignments/*"
     ]
