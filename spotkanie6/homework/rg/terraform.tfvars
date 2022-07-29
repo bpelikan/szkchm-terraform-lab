@@ -31,4 +31,18 @@ resource_group_tags_rg_dev = {
         description         = "RG for APP01"
 }
 
+# DEV
+resource_group_object_rg_mon = {
+        name                = "rg-mon-bp"
+        location            = "westeurope"
+        lock_level          = "CanNotDelete"
+}
+
+resource_group_tags_rg_mon = {
+        app                 = "app01"
+        businessowner       = "bpelikan"
+        env                 = "mon"
+        description         = "RG for APP01"
+}
+
 
